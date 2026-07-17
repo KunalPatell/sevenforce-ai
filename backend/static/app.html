@@ -322,7 +322,6 @@ async function runTool(tool,card){
 
   // Construct headers
   const headers = { "Content-Type": "application/json" };
-  const token = localStorage.getItem("sevenforce_token");
   if (token) headers["Authorization"] = `Bearer ${token}`;
   
   const groq = localStorage.getItem("user_groq_key");
