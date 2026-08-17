@@ -1,578 +1,509 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seven force — Autonomous AI Employee & Workforce Suite</title>
-  <meta name="description" content="Sevenforce provides 7 specialized AI employees — Maya (SEO), Buddy (Sales), Cassie (Support), Dexter (Finance), Commet (E-Commerce), RecruitAI (HR), and CodeRaven (Security) — ready to execute 24/7.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E⚡%3C/text%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sevenforce AI — 7 Autonomous AI Employees | Deploy Your AI Workforce</title>
+<meta name="description" content="Sevenforce deploys 7 specialized AI employees—Maya, Buddy, Cassie, Dexter, Commet, RecruitAI, CodeRaven—working 24/7 so you don't have to.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root {
+  --bg:  #050811;
+  --bg1: #080e1c;
+  --bg2: #0c1428;
+  --bg3: #101b34;
+  --cyan: #00d9ff;
+  --cyan-d: #0099cc;
+  --blue: #3b82f6;
+  --green: #22c55e;
+  --warn: #f59e0b;
+  --red: #ef4444;
+  --txt: #e2e8f0;
+  --muted: #475569;
+  --border: rgba(0,217,255,0.1);
+  --border2: rgba(255,255,255,0.06);
+  --glow: rgba(0,217,255,0.35);
+  --r: 12px;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --font-h: 'Orbitron', sans-serif;
+  --font-m: 'JetBrains Mono', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;color-scheme:dark}
+body{background:var(--bg);color:var(--txt);font-family:var(--font);font-size:15px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* Grid overlay */
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+
+/* Scroll progress */
+#sp{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue));z-index:200;width:0%}
+
+/* Glow orbs */
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px)}
+.orb1{width:500px;height:500px;background:rgba(0,153,204,.12);top:-100px;right:-100px}
+.orb2{width:400px;height:400px;background:rgba(59,130,246,.08);bottom:-80px;left:-80px}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:64px;display:flex;align-items:center;gap:16px;background:rgba(5,8,17,.0);border-bottom:1px solid transparent;transition:all .4s}
+nav.scrolled{background:rgba(5,8,17,.92);backdrop-filter:blur(20px);border-color:var(--border)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.logo-mark{width:36px;height:36px;border:1.5px solid var(--cyan);border-radius:8px;display:grid;place-items:center;font-size:16px;color:var(--cyan);box-shadow:0 0 16px rgba(0,217,255,.3)}
+.logo-name{font-family:var(--font-h);font-size:14px;font-weight:700;letter-spacing:.06em;color:var(--cyan)}
+.logo-name span{color:rgba(226,232,240,.5);font-size:12px;letter-spacing:.1em;display:block;font-family:var(--font)}
+.nav-r{margin-left:auto;display:flex;align-items:center;gap:10px}
+.nbtn{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .2s;border:0}
+.nbtn-out{background:none;color:var(--txt);border:1px solid var(--border2)}
+.nbtn-out:hover{background:rgba(255,255,255,.05);border-color:rgba(0,217,255,.3)}
+.nbtn-cyan{background:var(--cyan);color:#000;font-weight:700;box-shadow:0 4px 20px var(--glow)}
+.nbtn-cyan:hover{box-shadow:0 6px 28px var(--glow);transform:translateY(-1px)}
+.hamburger{display:none;background:none;border:1px solid var(--border);color:var(--cyan);width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:13px;place-items:center;margin-left:auto}
+@media(max-width:768px){.nav-r .nbtn-out{display:none}.hamburger{display:grid}}
+
+/* Mobile menu */
+.mob-menu{display:none;position:fixed;inset:0;z-index:99;background:rgba(5,8,17,.98);backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:var(--font-h);font-size:22px;color:var(--txt);text-decoration:none;letter-spacing:.05em}
+.mob-menu a:hover{color:var(--cyan)}
+.mob-close-btn{position:absolute;top:24px;right:24px;background:none;border:none;color:var(--cyan);font-size:22px;cursor:pointer}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 24px 60px;position:relative;z-index:1}
+.hero-inner{max-width:1100px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:rgba(0,217,255,.06);border-radius:6px;padding:5px 12px;font-family:var(--font-m);font-size:11px;color:var(--cyan);letter-spacing:.06em;margin-bottom:24px}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-h1{font-family:var(--font-h);font-size:clamp(28px,4.5vw,54px);font-weight:900;line-height:1.1;letter-spacing:.02em;color:var(--txt);margin-bottom:20px}
+.hero-h1 .c{color:var(--cyan);text-shadow:0 0 40px rgba(0,217,255,.5)}
+.hero-sub{color:rgba(226,232,240,.5);font-size:15px;line-height:1.75;margin-bottom:32px;max-width:440px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-main{padding:12px 24px;font-size:14px;font-weight:700;border-radius:var(--r);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s;border:0}
+.btn-cyn{background:var(--cyan);color:#000;box-shadow:0 4px 24px var(--glow)}
+.btn-cyn:hover{box-shadow:0 8px 36px var(--glow);transform:translateY(-2px)}
+.btn-out{background:none;color:var(--txt);border:1px solid var(--border2)}
+.btn-out:hover{background:rgba(255,255,255,.05);border-color:rgba(0,217,255,.25)}
+
+/* AI Employees grid */
+.agents-panel{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.agent-card{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+.agent-card::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(0,217,255,.04),transparent);opacity:0;transition:opacity .3s}
+.agent-card:hover{border-color:rgba(0,217,255,.4);box-shadow:0 0 20px rgba(0,217,255,.1)}
+.agent-card:hover::after{opacity:1}
+.agent-avatar{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;font-size:18px;flex-shrink:0}
+.agent-name{font-weight:700;font-size:13px;color:var(--txt)}
+.agent-role{font-size:11px;color:var(--muted);margin-top:1px}
+.agent-status{margin-left:auto;display:flex;align-items:center;gap:5px;font-family:var(--font-m);font-size:10px;color:var(--green)}
+.status-dot{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green)}
+.agent-full{grid-column:span 2}
+
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}}
+@media(max-width:640px){.agents-panel{grid-template-columns:1fr}.agent-full{grid-column:span 1}}
+
+/* Terminal log */
+.term-wrap{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;position:relative;z-index:1;margin-top:60px}
+.term-hdr{background:var(--bg2);padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.term-dot{width:11px;height:11px;border-radius:50%}
+.term-title{font-family:var(--font-m);font-size:12px;color:var(--muted);margin-left:8px}
+.term-body{padding:16px 20px;min-height:160px;font-family:var(--font-m);font-size:12px;line-height:1.8}
+.log-line{opacity:0;animation:fadeline .5s ease forwards}
+@keyframes fadeline{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:translateX(0)}}
+.log-ts{color:var(--muted)}
+.log-cyan{color:var(--cyan)}
+.log-green{color:var(--green)}
+.log-warn{color:var(--warn)}
+
+/* Sections */
+.section{padding:80px 24px;position:relative;z-index:1}
+.w{max-width:1100px;margin:0 auto}
+.eyebrow{font-family:var(--font-m);font-size:11px;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase;display:block;margin-bottom:14px}
+.sh2{font-family:var(--font-h);font-size:clamp(24px,3.5vw,40px);font-weight:800;line-height:1.1;letter-spacing:.03em;margin-bottom:14px}
+.sdesc{color:rgba(226,232,240,.5);font-size:15px;max-width:580px;line-height:1.7}
+
+/* ROI Calculator widget */
+.roi-widget{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r);padding:32px;margin-top:48px}
+.roi-widget h3{font-family:var(--font-h);font-size:18px;font-weight:700;margin-bottom:6px;color:var(--cyan)}
+.roi-widget p{font-size:13px;color:var(--muted);margin-bottom:24px}
+.roi-sliders{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.roi-field label{font-family:var(--font-m);font-size:11px;color:var(--muted);letter-spacing:.06em;display:flex;justify-content:space-between;margin-bottom:8px}
+.roi-field label span{color:var(--cyan);font-size:13px}
+.roi-field input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
+.roi-result{background:var(--bg2);border:1px solid rgba(0,217,255,.2);border-radius:var(--r);padding:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.roi-save{font-family:var(--font-h);font-size:36px;font-weight:900;color:var(--cyan);text-shadow:0 0 24px rgba(0,217,255,.5)}
+.roi-label{font-size:13px;color:var(--muted)}
+@media(max-width:640px){.roi-sliders{grid-template-columns:1fr}}
+
+/* Services grid */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-top:48px}
+.svc-item{background:var(--bg1);padding:28px 24px;transition:background .2s}
+.svc-item:hover{background:var(--bg2)}
+.svc-icon{width:40px;height:40px;border:1px solid var(--border);border-radius:8px;display:grid;place-items:center;font-size:16px;color:var(--cyan);margin-bottom:14px}
+.svc-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.svc-desc{font-size:13px;color:var(--muted);line-height:1.6}
+@media(max-width:768px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.svc-grid{grid-template-columns:1fr}}
+
+/* CTA */
+.cta-wrap{background:var(--bg1);border:1px solid rgba(0,217,255,.25);border-radius:var(--r);padding:64px 48px;text-align:center;position:relative;overflow:hidden;margin-top:80px}
+.cta-wrap::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:400px;height:200px;background:radial-gradient(ellipse,rgba(0,217,255,.15),transparent);pointer-events:none}
+.cta-wrap h2{font-family:var(--font-h);font-size:clamp(22px,3.5vw,38px);font-weight:800;margin-bottom:14px;letter-spacing:.03em}
+.cta-wrap p{color:rgba(226,232,240,.5);max-width:480px;margin:0 auto 32px;font-size:15px;line-height:1.7}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:5px}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:36px 24px;position:relative;z-index:1}
+.fi{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.fl{display:flex;gap:20px;flex-wrap:wrap}
+.fl a{color:var(--muted);font-size:13px;text-decoration:none;transition:color .2s}
+.fl a:hover{color:var(--cyan)}
+
+/* BYOK */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(16px);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--bg1);border:1px solid var(--border);border-radius:16px;padding:32px;width:100%;max-width:440px;position:relative}
+.modal-box h3{font-family:var(--font-h);font-size:18px;font-weight:800;color:var(--cyan);margin-bottom:4px;letter-spacing:.04em}
+.modal-box p{color:var(--muted);font-size:12px;margin-bottom:24px}
+.mclose{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.06);border:1px solid var(--border2);color:var(--txt);width:30px;height:30px;border-radius:7px;cursor:pointer;display:grid;place-items:center;font-size:13px}
+.bfield label{font-family:var(--font-m);font-size:11px;color:var(--muted);letter-spacing:.07em;display:block;margin:14px 0 5px}
+.bfield input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--txt);padding:9px 13px;font-size:13px;font-family:var(--font-m);transition:border-color .2s}
+.bfield input:focus{outline:none;border-color:var(--cyan)}
+.mfooter{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+</style>
 </head>
 <body>
-<span id="top"></span>
 
-<div class="grain-overlay" aria-hidden="true"></div>
-<div class="scroll-progress-bar" id="scrollProgress"></div>
-<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div id="sp"></div>
 
-
-<!-- Global Command Palette (Cmd+K / Ctrl+K) -->
-<div class="cmd-palette-overlay" id="cmdPalette" aria-hidden="true">
-  <div class="cmd-palette-card glow">
-    <div class="cmd-palette-header">
-      <i class="fas fa-search cmd-search-icon"></i>
-      <input type="text" id="cmdSearchInput" placeholder="Type a command, tool name, or venture... (Esc to close)" autocomplete="off">
-      <span class="cmd-kbd-badge">ESC</span>
-    </div>
-    <div class="cmd-palette-results" id="cmdResults">
-      <div class="cmd-group-label">Quick Actions</div>
-      <div class="cmd-item" data-action="run-tool"><i class="fas fa-play"></i> <span>Run Active AI Tool</span> <span class="cmd-hint">Enter</span></div>
-      <div class="cmd-item" data-action="open-byok"><i class="fas fa-key"></i> <span>Manage Universal BYOK Keys</span> <span class="cmd-hint">Ctrl+B</span></div>
-      <div class="cmd-group-label">Explore Sevenseed Ecosystem</div>
-      <a href="/" class="cmd-item"><i class="fas fa-seedling"></i> <span>Sevenseed Studio Hub</span></a>
-      <a href="/sevenforce/" class="cmd-item"><i class="fas fa-robot"></i> <span>Sevenforce (7 AI Employees)</span></a>
-      <a href="/comonk-ai/" class="cmd-item"><i class="fas fa-brain"></i> <span>Comonk (STAR Career Copilot)</span></a>
-      <a href="/pharmacy/" class="cmd-item"><i class="fas fa-stethoscope"></i> <span>Decode Pharmacy (Health AI)</span></a>
-      <a href="/breakdown/" class="cmd-item"><i class="fas fa-helmet-safety"></i> <span>Breakdown Factor (ConTech)</span></a>
-      <a href="/rakshak-ai/" class="cmd-item"><i class="fas fa-shield-halved"></i> <span>Rakshak AI (BNS 2023 Law)</span></a>
+<!-- BYOK Modal -->
+<div class="modal-overlay" id="byokModal">
+  <div class="modal-box">
+    <button class="mclose" id="byokClose"><i class="fas fa-xmark"></i></button>
+    <h3>BYOK KEYS</h3>
+    <p>Bring your own API keys — stored in your browser, never our servers. 100% free.</p>
+    <div class="bfield"><label>// GROQ API KEY <span style="color:var(--green)">// FREE</span></label><input type="password" id="bGroq" placeholder="gsk_…"></div>
+    <div class="bfield"><label>// GEMINI KEY</label><input type="password" id="bGem" placeholder="AIzaSy…"></div>
+    <div class="bfield"><label>// OPENAI KEY</label><input type="password" id="bOai" placeholder="sk-…"></div>
+    <div class="mfooter">
+      <button class="nbtn nbtn-out" id="bClear">Clear</button>
+      <button class="nbtn nbtn-cyan" id="bSave"><i class="fas fa-floppy-disk"></i> Save</button>
     </div>
   </div>
 </div>
 
-<!-- Universal BYOK Key Modal -->
-<div class="byok-modal-overlay" id="byokModal" aria-hidden="true">
-  <div class="byok-modal-card glow">
-    <div class="byok-modal-header">
-      <div class="byok-header-left">
-        <i class="fas fa-key byok-key-icon"></i>
-        <div>
-          <h3>Universal BYOK Settings</h3>
-          <p>100% Free · No Markups · Keys Stored Locally in Browser</p>
-        </div>
-      </div>
-      <button class="byok-modal-close" id="byokCloseBtn" aria-label="Close modal"><i class="fas fa-xmark"></i></button>
-    </div>
-    <div class="byok-modal-body">
-      <div class="byok-field">
-        <label for="byokGroq"><i class="fas fa-bolt" style="color:#f59e0b"></i> Groq API Key <span class="badge-free">Free & Fast LLaMA 3.3 70B</span></label>
-        <input type="password" id="byokGroq" placeholder="gsk_..." autocomplete="off">
-        <small>Get a free key in 10s at <a href="https://console.groq.com" target="_blank" rel="noopener">console.groq.com</a></small>
-      </div>
-      <div class="byok-field">
-        <label for="byokGemini"><i class="fas fa-gem" style="color:#06b6d4"></i> Google Gemini Key</label>
-        <input type="password" id="byokGemini" placeholder="AIzaSy..." autocomplete="off">
-      </div>
-      <div class="byok-field">
-        <label for="byokOpenAI"><i class="fas fa-brain" style="color:#10b981"></i> OpenAI Key</label>
-        <input type="password" id="byokOpenAI" placeholder="sk-..." autocomplete="off">
-      </div>
-      <div class="byok-field">
-        <label for="byokAnthropic"><i class="fas fa-robot" style="color:#a855f7"></i> Anthropic Claude Key</label>
-        <input type="password" id="byokAnthropic" placeholder="sk-ant-..." autocomplete="off">
-      </div>
-    </div>
-    <div class="byok-ping-bar" style="padding:10px 24px; background:rgba(0,0,0,0.3); border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between;">
-      <button type="button" class="btn btn-ghost" id="byokPingBtn" style="font-size:12px; padding:5px 12px;"><i class="fas fa-bolt" style="color:#f59e0b"></i> Test API Connectivity</button>
-      <span id="byokPingResult" style="font-size:12px; font-weight:700; color:var(--text-3); font-family:var(--font-mono);">Not Tested</span>
-    </div>
-    <div class="byok-modal-footer">
-      <button type="button" class="btn btn-ghost" id="byokClearBtn"><i class="fas fa-trash-can"></i> Clear</button>
-      <button type="button" class="btn btn-primary" id="byokSaveBtn"><i class="fas fa-floppy-disk"></i> Save Keys to Browser</button>
-    </div>
-  </div>
+<!-- Mobile menu -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close-btn" id="mobClose"><i class="fas fa-xmark"></i></button>
+  <a href="#agents">AI Employees</a>
+  <a href="#roi">ROI Calculator</a>
+  <a href="#services">Services</a>
+  <a href="https://sevenseed.onrender.com/">Sevenseed Hub</a>
 </div>
 
-<nav class="nav" id="mainNav">
-  <a class="logo" href="#top">
-    <span class="logo-icon"><i class="fas fa-users-gear"></i></span>
-    <span class="logo-text">Seven <span class="logo-accent">force</span></span>
+<!-- Nav -->
+<nav id="mainNav">
+  <a class="logo" href="#">
+    <div class="logo-mark"><i class="fas fa-users-gear"></i></div>
+    <div>
+      <div class="logo-name">SEVENFORCE</div>
+      <div class="logo-name" style="color:rgba(226,232,240,.35);font-size:10px;font-weight:400;letter-spacing:.08em;font-family:var(--font);margin-top:-2px">AI WORKFORCE SUITE</div>
+    </div>
   </a>
-  <div class="nav-links" id="navLinks">
-    <a href="#about">About</a>
-    <a href="#team">AI Employees</a>
-    <a href="#services">AI Engines</a>
-    
-    <a href="#sandbox">Live Demo</a>
-    <a href="#process">Workflow</a>
-    <a href="#testimonials">Trust</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
+  <div class="nav-r">
+    <a class="nbtn nbtn-out" href="#agents">AI Employees</a>
+    <a class="nbtn nbtn-out" href="#roi">ROI Calc</a>
+    <a class="nbtn nbtn-out" href="https://sevenseed.onrender.com/">← Hub</a>
+    <button class="nbtn nbtn-out" id="byokBtn"><i class="fas fa-key"></i> BYOK</button>
+    <a class="nbtn nbtn-cyan" href="#roi"><i class="fas fa-bolt"></i> Try Live</a>
   </div>
-  <div class="nav-right">
-    <button class="btn btn-byok" id="byokOpenBtn" aria-label="Open BYOK Settings">
-      <i class="fas fa-key"></i> <span id="byokNavLabel">BYOK API Keys</span>
-    </button>
-    <a class="btn btn-ghost" href="/sevenforce/app/"><i class="fas fa-wand-magic-sparkles"></i> App Portal</a>
-    <a class="btn btn-primary" href="#sandbox"><i class="fas fa-bolt"></i> Try Live</a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
-  </div>
+  <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
 </nav>
 
-<header class="hero">
-  <div class="hero-glow-mesh"></div>
-  <div class="hero-orb orb-1"></div>
-  <div class="hero-orb orb-2"></div>
-  <canvas id="particlesCanvas"></canvas>
-  <div class="hero-content">
-    <div class="hero-pill" data-reveal><i class="fas fa-microchip"></i> <span>7 AI Employees · Sintra.ai & AutomationOwl Inspired · 100% Free BYOK</span></div>
-    <h1 class="hero-title" data-reveal>Hire Your Team of <span class="grad">AI Employees</span><br>That Deliver Finished Work</h1>
-    <p class="hero-sub" data-reveal>Sevenforce provides 7 specialized AI employees — Maya (SEO), Buddy (Sales), Cassie (Support), Dexter (Finance), Commet (E-Commerce), RecruitAI (HR), and CodeRaven (Security) — ready to execute 24/7.</p>
-    <div class="hero-actions" data-reveal>
-      <a class="btn btn-primary lg" href="#sandbox"><i class="fas fa-terminal"></i> Try Live Playground</a><a class="btn btn-ghost lg" href="#services"><i class="fas fa-microchip"></i> Explore Capabilities</a>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span class="badge-dot"></span> SYSTEM ONLINE · 7/7 AGENTS ACTIVE</div>
+      <h1 class="hero-h1">Deploy Your<br><span class="c">AI Workforce</span><br>in Minutes</h1>
+      <p class="hero-sub">7 specialized AI employees operating 24/7. No HR overhead, no salary markups, no downtime. Plug in your free Groq key and your AI team goes live instantly.</p>
+      <div class="hero-btns">
+        <a class="btn-main btn-cyn" href="#roi"><i class="fas fa-calculator"></i> Calculate Your ROI</a>
+        <button class="btn-main btn-out" id="heroByok"><i class="fas fa-key"></i> Add API Key</button>
+      </div>
+      <div style="margin-top:32px;display:flex;gap:28px;flex-wrap:wrap">
+        <div><div style="font-family:var(--font-h);font-size:24px;font-weight:800;color:var(--cyan)">$0</div><div style="font-size:12px;color:var(--muted)">Platform cost</div></div>
+        <div style="width:1px;background:var(--border)"></div>
+        <div><div style="font-family:var(--font-h);font-size:24px;font-weight:800;color:var(--cyan)">24/7</div><div style="font-size:12px;color:var(--muted)">Always online</div></div>
+        <div style="width:1px;background:var(--border)"></div>
+        <div><div style="font-family:var(--font-h);font-size:24px;font-weight:800;color:var(--cyan)">&lt;120ms</div><div style="font-size:12px;color:var(--muted)">Response time</div></div>
+      </div>
     </div>
-    <div class="stats-row glow" data-reveal>
-      <div class="hs"><div class="hs-num count">7</div><div class="hs-lbl">Autonomous Workers</div></div>
-        <div class="hs-sep"></div>
-        <div class="hs"><div class="hs-num count">25+</div><div class="hs-lbl">Production Tools</div></div>
-        <div class="hs-sep"></div>
-        <div class="hs"><div class="hs-num count">$0</div><div class="hs-lbl">Management Overhead</div></div>
-        <div class="hs-sep"></div>
-        <div class="hs"><div class="hs-num count">24/7</div><div class="hs-lbl">Instant Turnaround</div></div>
+
+    <!-- Live Agent Grid -->
+    <div class="agents-panel" id="agents">
+      <div class="agent-card agent-full" style="background:linear-gradient(135deg,rgba(0,217,255,.08),var(--bg2));border-color:rgba(0,217,255,.3)">
+        <div class="agent-avatar" style="background:rgba(0,217,255,.15);font-size:22px">🌸</div>
+        <div style="flex:1">
+          <div class="agent-name" style="font-size:15px;color:var(--cyan)">Maya — SEO &amp; Content Intelligence</div>
+          <div class="agent-role">Keyword clusters · Technical audits · Content briefs · SERP tracking</div>
+        </div>
+        <div class="agent-status"><span class="status-dot"></span>LIVE</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-avatar" style="background:rgba(59,130,246,.15)">🤝</div>
+        <div>
+          <div class="agent-name">Buddy</div>
+          <div class="agent-role">Sales &amp; Outreach AI</div>
+        </div>
+        <div class="agent-status"><span class="status-dot"></span>LIVE</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-avatar" style="background:rgba(168,85,247,.15)">💬</div>
+        <div>
+          <div class="agent-name">Cassie</div>
+          <div class="agent-role">Customer Support AI</div>
+        </div>
+        <div class="agent-status"><span class="status-dot"></span>LIVE</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-avatar" style="background:rgba(245,158,11,.15)">📊</div>
+        <div>
+          <div class="agent-name">Dexter</div>
+          <div class="agent-role">Finance &amp; Unit Economics</div>
+        </div>
+        <div class="agent-status"><span class="status-dot"></span>LIVE</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-avatar" style="background:rgba(239,68,68,.15)">🛒</div>
+        <div>
+          <div class="agent-name">Commet</div>
+          <div class="agent-role">E-Commerce AI</div>
+        </div>
+        <div class="agent-status"><span class="status-dot"></span>LIVE</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-avatar" style="background:rgba(34,197,94,.15)">🎯</div>
+        <div>
+          <div class="agent-name">RecruitAI</div>
+          <div class="agent-role">Hiring &amp; HR Intelligence</div>
+        </div>
+        <div class="agent-status"><span class="status-dot"></span>LIVE</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-avatar" style="background:rgba(0,217,255,.1)">🦅</div>
+        <div>
+          <div class="agent-name">CodeRaven</div>
+          <div class="agent-role">Security &amp; Code Audit</div>
+        </div>
+        <div class="agent-status"><span class="status-dot"></span>LIVE</div>
+      </div>
     </div>
-    <div class="hero-marquee" data-reveal>
-      <div class="marquee-track"><span>Maya SEO Clusters</span><span>Buddy Sales Outreach</span><span>Cassie Ticket Triage</span><span>Dexter SaaS Economics</span><span>Commet E-Commerce</span><span>RecruitAI Screening</span><span>CodeRaven Security</span><span>Maya SEO Clusters</span><span>Buddy Sales Outreach</span><span>Cassie Ticket Triage</span><span>Dexter SaaS Economics</span><span>Commet E-Commerce</span><span>RecruitAI Screening</span><span>CodeRaven Security</span></div>
-    </div>
-  </div>
-</header>
-
-<section class="ai-strip">
-  <span class="ai-strip-label"><i class="fas fa-shield-halved"></i> Production AI Stack & Zero Platform Markup</span>
-  <div class="ai-chips"><span class="ai-chip"><i class="fas fa-microchip"></i>LangGraph Multi-Agent</span>
-      <span class="ai-chip"><i class="fas fa-microchip"></i>Groq LLaMA 3.3 70B</span>
-      <span class="ai-chip"><i class="fas fa-microchip"></i>ChromaDB RAG</span>
-      <span class="ai-chip"><i class="fas fa-microchip"></i>MiniLM Embeddings</span>
-      <span class="ai-chip"><i class="fas fa-microchip"></i>FastAPI Core</span>
-      <span class="ai-chip"><i class="fas fa-microchip"></i>Universal BYOK</span>
-      <span class="ai-chip"><i class="fas fa-microchip"></i>Autonomous Tool Callers</span>
-      <span class="ai-chip"><i class="fas fa-microchip"></i>Code Security AST Scanner</span></div>
-</section>
-
-
-<section class="section workers-roster-sec" id="team">
-  <div class="eyebrow center"><i class="fas fa-users"></i> SINTRA-STYLE AI WORKFORCE</div>
-  <h2 class="sec-title">Meet Your 7 Autonomous AI Employees</h2>
-  <div class="workers-grid">
-    
-        <div class="worker-card glow tilt-card reveal" style="--worker-color:#06b6d4">
-          <div class="worker-header">
-            <div class="worker-avatar" style="background:#06b6d420; color:#06b6d4; border-color:#06b6d450">
-              <i class="fas fa-pen-nib"></i>
-            </div>
-            <div>
-              <h4>Maya</h4>
-              <span class="worker-role">Content & SEO Director</span>
-            </div>
-            <span class="worker-status-dot"></span>
-          </div>
-          <p class="worker-desc">Intent-Mapped Keyword Clusters, Article Repurposing</p>
-          <div class="worker-footer">
-            <span class="worker-suite"><i class="fas fa-bolt"></i> Autonomous Agency</span>
-            <button class="btn btn-primary sm worker-try-btn" data-worker="Maya" data-endpoint="/sevenforce/api/tools/seo-keyword-cluster" data-sample="AI SEO Topic">
-              <i class="fas fa-play"></i> Run Maya
-            </button>
-          </div>
-        </div>
-        
-        <div class="worker-card glow tilt-card reveal" style="--worker-color:#3b82f6">
-          <div class="worker-header">
-            <div class="worker-avatar" style="background:#3b82f620; color:#3b82f6; border-color:#3b82f650">
-              <i class="fas fa-paper-plane"></i>
-            </div>
-            <div>
-              <h4>Buddy</h4>
-              <span class="worker-role">B2B Sales Closer</span>
-            </div>
-            <span class="worker-status-dot"></span>
-          </div>
-          <p class="worker-desc">4-Step Cold Email Sequences, Objection Battlecards</p>
-          <div class="worker-footer">
-            <span class="worker-suite"><i class="fas fa-bolt"></i> Outbound AI</span>
-            <button class="btn btn-primary sm worker-try-btn" data-worker="Buddy" data-endpoint="/sevenforce/api/tools/cold-email-sequencer" data-sample="SaaS Automation Lead">
-              <i class="fas fa-play"></i> Run Buddy
-            </button>
-          </div>
-        </div>
-        
-        <div class="worker-card glow tilt-card reveal" style="--worker-color:#10b981">
-          <div class="worker-header">
-            <div class="worker-avatar" style="background:#10b98120; color:#10b981; border-color:#10b98150">
-              <i class="fas fa-headset"></i>
-            </div>
-            <div>
-              <h4>Cassie</h4>
-              <span class="worker-role">Support & SLA Triage</span>
-            </div>
-            <span class="worker-status-dot"></span>
-          </div>
-          <p class="worker-desc">Customer Sentiment Triage, P1-P4 Urgency Routing</p>
-          <div class="worker-footer">
-            <span class="worker-suite"><i class="fas fa-bolt"></i> 24/7 Support</span>
-            <button class="btn btn-primary sm worker-try-btn" data-worker="Cassie" data-endpoint="/sevenforce/api/tools/ticket-sentiment-triage" data-sample="Billing issue, system down">
-              <i class="fas fa-play"></i> Run Cassie
-            </button>
-          </div>
-        </div>
-        
-        <div class="worker-card glow tilt-card reveal" style="--worker-color:#8b5cf6">
-          <div class="worker-header">
-            <div class="worker-avatar" style="background:#8b5cf620; color:#8b5cf6; border-color:#8b5cf650">
-              <i class="fas fa-calculator"></i>
-            </div>
-            <div>
-              <h4>Dexter</h4>
-              <span class="worker-role">SaaS Financial Analyst</span>
-            </div>
-            <span class="worker-status-dot"></span>
-          </div>
-          <p class="worker-desc">MRR, ARR, LTV:CAC, CAC Payback Forecasts</p>
-          <div class="worker-footer">
-            <span class="worker-suite"><i class="fas fa-bolt"></i> Financial AI</span>
-            <button class="btn btn-primary sm worker-try-btn" data-worker="Dexter" data-endpoint="/sevenforce/api/tools/saas-unit-economics" data-sample="MRR: $50K, Churn: 2%">
-              <i class="fas fa-play"></i> Run Dexter
-            </button>
-          </div>
-        </div>
-        
-        <div class="worker-card glow tilt-card reveal" style="--worker-color:#f59e0b">
-          <div class="worker-header">
-            <div class="worker-avatar" style="background:#f59e0b20; color:#f59e0b; border-color:#f59e0b50">
-              <i class="fas fa-cart-plus"></i>
-            </div>
-            <div>
-              <h4>Commet</h4>
-              <span class="worker-role">E-Commerce Optimizer</span>
-            </div>
-            <span class="worker-status-dot"></span>
-          </div>
-          <p class="worker-desc">Amazon/Shopify Titles, High-Converting Bullets</p>
-          <div class="worker-footer">
-            <span class="worker-suite"><i class="fas fa-bolt"></i> Retail AI</span>
-            <button class="btn btn-primary sm worker-try-btn" data-worker="Commet" data-endpoint="/sevenforce/api/tools/product-listing-enhancer" data-sample="Ergonomic Office Chair">
-              <i class="fas fa-play"></i> Run Commet
-            </button>
-          </div>
-        </div>
-        
-        <div class="worker-card glow tilt-card reveal" style="--worker-color:#ec4899">
-          <div class="worker-header">
-            <div class="worker-avatar" style="background:#ec489920; color:#ec4899; border-color:#ec489950">
-              <i class="fas fa-user-check"></i>
-            </div>
-            <div>
-              <h4>RecruitAI</h4>
-              <span class="worker-role">Talent Screener</span>
-            </div>
-            <span class="worker-status-dot"></span>
-          </div>
-          <p class="worker-desc">Candidate Resume vs JD Scorecards, Interview Probes</p>
-          <div class="worker-footer">
-            <span class="worker-suite"><i class="fas fa-bolt"></i> Talent AI</span>
-            <button class="btn btn-primary sm worker-try-btn" data-worker="RecruitAI" data-endpoint="/sevenforce/api/tools/candidate-scorecard" data-sample="Senior Python Engineer">
-              <i class="fas fa-play"></i> Run RecruitAI
-            </button>
-          </div>
-        </div>
-        
-        <div class="worker-card glow tilt-card reveal" style="--worker-color:#ef4444">
-          <div class="worker-header">
-            <div class="worker-avatar" style="background:#ef444420; color:#ef4444; border-color:#ef444450">
-              <i class="fas fa-shield-halved"></i>
-            </div>
-            <div>
-              <h4>CodeRaven</h4>
-              <span class="worker-role">Security & Code Auditor</span>
-            </div>
-            <span class="worker-status-dot"></span>
-          </div>
-          <p class="worker-desc">AST Vulnerability Scans, OWASP, Secret Leaks</p>
-          <div class="worker-footer">
-            <span class="worker-suite"><i class="fas fa-bolt"></i> Security AI</span>
-            <button class="btn btn-primary sm worker-try-btn" data-worker="CodeRaven" data-endpoint="/sevenforce/api/tools/security-audit" data-sample="eval(user_input)">
-              <i class="fas fa-play"></i> Run CodeRaven
-            </button>
-          </div>
-        </div>
-        
   </div>
 </section>
 
-
-<section class="section about" id="about">
-  <div class="about-grid">
-    <div class="about-copy reveal">
-      <div class="eyebrow"><i class="fas fa-bolt"></i> Est. 2026 · Autonomous AI Employee & Workforce Suite</div>
-      <h2 class="sec-title left">Meet Your New Autonomous AI Workforce</h2>
-      <p>Inspired by top AI workforce platforms like Sintra.ai and AutomationOwl.com, Sevenforce provides 7 specialized AI employees trained on rigorous domain workflows, producing finished deliverables: structured SEO keyword clusters, 4-step cold outreach sequences, SLA ticket triage, and LTV/CAC financial models.</p><p>Run them simultaneously or individually using your own API keys. No subscriptions, no credits, and zero data lock-in.</p>
+<!-- Terminal log -->
+<div class="section" style="padding-top:0">
+  <div class="w">
+    <div class="term-wrap">
+      <div class="term-hdr">
+        <div class="term-dot" style="background:#ef4444"></div>
+        <div class="term-dot" style="background:#f59e0b"></div>
+        <div class="term-dot" style="background:#22c55e"></div>
+        <span class="term-title">sevenforce_supervisor.log — 7 agents live</span>
+      </div>
+      <div class="term-body" id="termLog"></div>
     </div>
-    <aside class="about-card glow tilt-card reveal">
-      <div class="about-card-ic"><i class="fas fa-users-gear"></i></div>
-      <h3>Why Seven?</h3>
-      <ul class="hl-list">
-        <li><i class="fas fa-check"></i> <span>Maya: Semantic SEO keyword cluster maps and multi-platform article repurposing</span></li>
-          <li><i class="fas fa-check"></i> <span>Buddy: 4-step B2B cold email sequences and objection battlecards</span></li>
-          <li><i class="fas fa-check"></i> <span>Cassie: Support ticket sentiment analysis with SLA urgency triage (P1-P4)</span></li>
-          <li><i class="fas fa-check"></i> <span>Dexter: SaaS MRR/ARR unit economics, LTV:CAC, and payback modeling</span></li>
-          <li><i class="fas fa-check"></i> <span>RecruitAI & CodeRaven: Structured resume scorecards and OWASP code vulnerability scans</span></li>
-      </ul>
-    </aside>
+  </div>
+</div>
+
+<!-- ROI Calculator -->
+<section class="section" id="roi">
+  <div class="w">
+    <span class="eyebrow">Live Calculator</span>
+    <h2 class="sh2">Your AI Workforce <span style="color:var(--cyan)">ROI</span></h2>
+    <p class="sdesc">Drag the sliders to calculate real annual payroll savings from replacing manual roles with Sevenforce AI employees.</p>
+    <div class="roi-widget">
+      <h3><i class="fas fa-calculator"></i> Payroll Savings Simulator</h3>
+      <p>Compare your current human team cost vs. the $0 AI workforce model.</p>
+      <div class="roi-sliders">
+        <div class="roi-field">
+          <label>Team Size (roles) <span id="roiRolesVal">8</span></label>
+          <input type="range" min="1" max="50" value="8" id="roiRoles">
+        </div>
+        <div class="roi-field">
+          <label>Avg. Annual Salary <span id="roiSalVal">$45,000</span></label>
+          <input type="range" min="20000" max="120000" step="5000" value="45000" id="roiSal">
+        </div>
+      </div>
+      <div class="roi-result">
+        <div>
+          <div class="roi-save" id="roiSave">$360,000</div>
+          <div class="roi-label">Estimated annual savings vs. human payroll</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:var(--font-m);font-size:13px;color:var(--muted)">Human payroll cost: <span id="roiTotal" style="color:var(--warn)">$360,000/yr</span></div>
+          <div style="font-family:var(--font-m);font-size:13px;color:var(--muted);margin-top:4px">Sevenforce cost: <span style="color:var(--green)">$0/yr</span></div>
+          <div style="margin-top:12px"><a class="nbtn nbtn-cyan" href="https://sevenseed.onrender.com/app/" style="font-size:12px"><i class="fas fa-rocket"></i> Deploy AI Team</a></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- Services -->
 <section class="section" id="services">
-  <div class="eyebrow center"><i class="fas fa-microchip"></i> 7 SPECIALIZED WORKERS</div>
-  <h2 class="sec-title">A Specialist For Every Core Business Function</h2>
-  <div class="svc-grid">
-    <div class="svc-card glow tilt-card reveal"><div class="svc-ic"><i class="fas fa-pen-nib"></i></div><h4>Maya — Content & SEO Director</h4><p>Generates intent-mapped keyword clusters, content briefs, and repurposes articles into X threads and LinkedIn posts.</p><span class="svc-tag"><i class="fas fa-bolt"></i> Maya Agent</span></div>
-        <div class="svc-card glow tilt-card reveal"><div class="svc-ic"><i class="fas fa-paper-plane"></i></div><h4>Buddy — B2B Sales Closer</h4><p>Drafts hyper-personalized cold outreach sequences with high-conversion psychological triggers and objection handling.</p><span class="svc-tag"><i class="fas fa-bolt"></i> Buddy Agent</span></div>
-        <div class="svc-card glow tilt-card reveal"><div class="svc-ic"><i class="fas fa-headset"></i></div><h4>Cassie — Support & SLA Triage</h4><p>Analyzes incoming support tickets, determines sentiment and urgency, and drafts empathetic resolutions.</p><span class="svc-tag"><i class="fas fa-bolt"></i> Cassie Agent</span></div>
-        <div class="svc-card glow tilt-card reveal"><div class="svc-ic"><i class="fas fa-calculator"></i></div><h4>Dexter — SaaS Financial Analyst</h4><p>Computes MRR, ARR, ARPU, LTV, LTV:CAC ratios, and CAC payback periods with growth recommendations.</p><span class="svc-tag"><i class="fas fa-bolt"></i> Dexter Agent</span></div>
-        <div class="svc-card glow tilt-card reveal"><div class="svc-ic"><i class="fas fa-cart-plus"></i></div><h4>Commet — E-Commerce Booster</h4><p>Generates high-converting product titles, feature bullets, and search backend terms for Amazon and Shopify.</p><span class="svc-tag"><i class="fas fa-bolt"></i> Commet Agent</span></div>
-        <div class="svc-card glow tilt-card reveal"><div class="svc-ic"><i class="fas fa-user-check"></i></div><h4>RecruitAI — Talent Screener</h4><p>Evaluates resumes against job descriptions with structured scorecard matching and customized interview questions.</p><span class="svc-tag"><i class="fas fa-bolt"></i> RecruitAI Agent</span></div>
-  </div>
-</section>
-
-
-
-<section class="section sandbox-sec" id="sandbox" data-tools='[{"id": "maya", "name": "Maya (SEO & Content)", "icon": "fa-pen-nib", "desc": "Generates intent-mapped keyword clusters, content briefs, and repurposes articles into X threads.", "endpoint": "/sevenforce/api/tools/seo-keyword-cluster", "badge": "Maya AI Specialist", "fields": [{"id": "topic", "label": "Target Topic / Core Seed Keyword", "type": "text", "val": "AI Employee Automation for B2B Startups"}, {"id": "target_audience", "label": "Target Audience", "type": "text", "val": "SaaS Founders & CTOs"}], "sample": "{\"core_topic\":\"AI Employee Automation for B2B Startups\",\"keyword_clusters\":[{\"cluster\":\"High-Intent Buying\",\"keywords\":[\"hire AI employee\",\"autonomous AI sales agent\",\"SaaS AI worker\"]},{\"cluster\":\"Informational/Educational\",\"keywords\":[\"how to automate customer support\",\"best AI worker tools 2026\"]}],\"content_brief_summary\":\"Structure as a comparison guide highlighting 24/7 turnaround and zero salary overhead.\"}"}, {"id": "buddy", "name": "Buddy (Sales Closer)", "icon": "fa-paper-plane", "desc": "Drafts hyper-personalized 4-step cold outreach sequences with high-conversion psychological triggers.", "endpoint": "/sevenforce/api/tools/cold-email-sequencer", "badge": "Buddy AI Closer", "fields": [{"id": "product_name", "label": "Product / Service Offered", "type": "text", "val": "Sevenforce Autonomous Sales Assistant"}, {"id": "prospect_role", "label": "Prospect Role & Industry", "type": "text", "val": "VP of Sales at Series-A SaaS"}], "sample": "{\"outreach_strategy\":\"Value-first pattern interrupt sequence\",\"email_sequence\":[{\"step\":\"Email 1 (Day 1)\",\"subject\":\"Quick question regarding lead response time\",\"body\":\"Hi {FirstName},\\n\\nSaw you recently expanded the SDR team. Are your reps still manually qualifying inbound leads after hours?\\n\\nBuddy qualifies and schedules demos in <60 seconds.\\n\\nOpen to seeing a 2-min demo?\"},{\"step\":\"Email 2 (Day 4)\",\"subject\":\"3.4x demo booking benchmark\",\"body\":\"Following up with a quick case study: how Series-A teams booked 3.4x more demos without hiring more SDRs.\"}]}"}, {"id": "dexter", "name": "Dexter (Finance Analyst)", "icon": "fa-calculator", "desc": "Computes MRR, ARR, ARPU, LTV, LTV:CAC, and CAC payback period with health grades.", "endpoint": "/sevenforce/api/tools/saas-unit-economics", "badge": "Dexter Financial Analyst", "fields": [{"id": "mrr", "label": "Current MRR ($)", "type": "number", "val": "45000"}, {"id": "newcust", "label": "New Customers / Month", "type": "number", "val": "30"}, {"id": "churn", "label": "Monthly Churn (%)", "type": "number", "val": "2.1"}, {"id": "cac", "label": "Customer Acquisition Cost ($)", "type": "number", "val": "650"}], "sample": "{\"metrics_summary\":{\"mrr_formatted\":\"$45,000.00\",\"arr_formatted\":\"$540,000.00\",\"estimated_ltv\":\"$7,142.86\",\"ltv_to_cac_ratio\":\"10.99x\",\"cac_payback_months\":\"4.3 Months\",\"health_grade\":\"A+ (Excellent)\"},\"growth_recommendations\":[\"Scale outbound acquisition campaigns with Buddy\",\"Automate onboarding retention with Cassie\"]}"}, {"id": "cassie", "name": "Cassie (Support Triage)", "icon": "fa-headset", "desc": "Analyzes incoming support tickets, determines sentiment and urgency, and drafts empathetic resolutions.", "endpoint": "/sevenforce/api/tools/ticket-sentiment-triage", "badge": "Cassie AI Specialist", "fields": [{"id": "ticket_text", "label": "Customer Ticket Message", "type": "textarea", "val": "URGENT: Our production API webhooks have stopped delivering events since 9 AM! All customer payments are stalled. Please fix this immediately!"}], "sample": "{\"sentiment\":\"Frustrated / High Anxiety\",\"urgency_tier\":\"P1 (Critical Outage)\",\"suggested_resolution\":\"Acknowledge outage immediately with incident commander dispatch notice; initiate automated webhook replay upon service restoration.\",\"sla_target_minutes\":15}"}]'>
-  <div class="eyebrow center"><i class="fas fa-terminal"></i> LIVE INTERACTIVE PLAYGROUND</div>
-  <h2 class="sec-title">Try Production AI Tools Live</h2>
-  <p class="sandbox-subtitle center" id="sbSubtitle">Generates intent-mapped keyword clusters, content briefs, and repurposes articles into X threads.</p>
-  
-  <div class="sandbox-tabs-bar reveal">
-    
-          <button type="button" class="tab-tool-btn active" data-tool-id="maya">
-            <i class="fas fa-pen-nib"></i> <span>Maya (SEO & Content)</span>
-          </button>
-        
-          <button type="button" class="tab-tool-btn " data-tool-id="buddy">
-            <i class="fas fa-paper-plane"></i> <span>Buddy (Sales Closer)</span>
-          </button>
-        
-          <button type="button" class="tab-tool-btn " data-tool-id="dexter">
-            <i class="fas fa-calculator"></i> <span>Dexter (Finance Analyst)</span>
-          </button>
-        
-          <button type="button" class="tab-tool-btn " data-tool-id="cassie">
-            <i class="fas fa-headset"></i> <span>Cassie (Support Triage)</span>
-          </button>
-        
-  </div>
-
-  <div class="sandbox-container reveal">
-    <div class="sandbox-card glow">
-      <div class="sandbox-header">
-        <div class="sandbox-dots">
-          <span class="dot dot-red"></span>
-          <span class="dot dot-yellow"></span>
-          <span class="dot dot-green"></span>
-        </div>
-        <div class="sandbox-title-badge" id="sbTitleBadge"><i class="fas fa-pen-nib"></i> Maya (SEO & Content)</div>
-        <span class="sandbox-engine-pill" id="sbEnginePill">Maya AI Specialist</span>
+  <div class="w">
+    <span class="eyebrow">Capabilities</span>
+    <h2 class="sh2">What Your AI Team Can Do</h2>
+    <p class="sdesc">Each AI employee is a specialized agent with domain-tuned context, memory, and workflow automation.</p>
+    <div class="svc-grid">
+      <div class="svc-item">
+        <div class="svc-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+        <div class="svc-title">SEO &amp; Content Clusters</div>
+        <div class="svc-desc">Maya builds semantic keyword clusters, runs technical audits, and generates content briefs ranked for your niche.</div>
       </div>
-      <div class="sandbox-body">
-        <div class="sandbox-form-pane">
-          <div class="sb-presets-bar">
-            <span class="sb-presets-label"><i class="fas fa-wand-magic-sparkles" style="color:var(--primary-l)"></i> Instant Scenarios:</span>
-            <div class="sb-presets-chips" id="sbPresetsChips"></div>
-          </div>
-          <form class="sb-form" id="sandboxForm" data-endpoint="/sevenforce/api/tools/seo-keyword-cluster" data-sample='{"core_topic":"AI Employee Automation for B2B Startups","keyword_clusters":[{"cluster":"High-Intent Buying","keywords":["hire AI employee","autonomous AI sales agent","SaaS AI worker"]},{"cluster":"Informational/Educational","keywords":["how to automate customer support","best AI worker tools 2026"]}],"content_brief_summary":"Structure as a comparison guide highlighting 24/7 turnaround and zero salary overhead."}'>
-            <div id="sbDynamicFields">
-              
-            <div class="sb-field">
-              <label for="sb-topic">Target Topic / Core Seed Keyword</label>
-              <input type="text" id="sb-topic" value="AI Employee Automation for B2B Startups" required>
-            </div>
-            
-            <div class="sb-field">
-              <label for="sb-target_audience">Target Audience</label>
-              <input type="text" id="sb-target_audience" value="SaaS Founders & CTOs" required>
-            </div>
-            
-            </div>
-            <button type="submit" class="btn btn-primary lg w-full" id="sandboxBtn">
-              <i class="fas fa-play"></i> Run Live Model
-            </button>
-          </form>
-        </div>
-        <div class="sandbox-result-pane">
-          <div class="sandbox-result-bar">
-            <span class="res-title"><i class="fas fa-code"></i> Live Output Inspector</span>
-            <div class="res-actions">
-              <button type="button" class="btn-res-toggle active" id="btnViewFormatted"><i class="fas fa-table-cells-large"></i> Visual</button>
-              <button type="button" class="btn-res-toggle" id="btnViewJson"><i class="fas fa-brackets-curly"></i> JSON</button>
-              <button type="button" class="btn-copy-res" id="sandboxCopy" title="Copy JSON" aria-label="Copy Response"><i class="far fa-copy"></i></button>
-              <button type="button" class="btn-copy-res" id="sandboxDownload" title="Download Markdown Report" aria-label="Download Report"><i class="fas fa-download"></i></button>
-            </div>
-          </div>
-          <div class="sandbox-display-wrap">
-            <div class="sandbox-visual-view" id="sandboxVisual">
-              <div class="sb-empty-state">
-                <i class="fas fa-microchip pulse-icon"></i>
-                <p>Click <strong>"Run Live Model"</strong> to execute real-time inference and view structured output.</p>
-              </div>
-            </div>
-            <pre class="sandbox-json-view hide" id="sandboxOutput">// Click "Run Live Model" to view raw JSON response payload...</pre>
-          </div>
-        </div>
+      <div class="svc-item">
+        <div class="svc-icon"><i class="fas fa-envelope-open-text"></i></div>
+        <div class="svc-title">Sales Outreach Sequences</div>
+        <div class="svc-desc">Buddy automates personalized cold email sequences, LinkedIn follow-up cadences, and lead qualification pipelines.</div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon"><i class="fas fa-headset"></i></div>
+        <div class="svc-title">24/7 Ticket Triage</div>
+        <div class="svc-desc">Cassie classifies, routes, and resolves support tickets with context-aware replies — zero wait time for customers.</div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="svc-title">Unit Economics &amp; LTV/CAC</div>
+        <div class="svc-desc">Dexter calculates MRR growth, payback periods, burn rates, and ARR forecasts with real-time scenario modeling.</div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon"><i class="fas fa-shield-virus"></i></div>
+        <div class="svc-title">Code Security Audits</div>
+        <div class="svc-desc">CodeRaven scans your codebase for OWASP vulnerabilities, dependency CVEs, and authentication bypass risks.</div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon"><i class="fas fa-users"></i></div>
+        <div class="svc-title">Autonomous Hiring Pipeline</div>
+        <div class="svc-desc">RecruitAI screens resumes, scores candidates against JD requirements, and schedules first-round interviews automatically.</div>
       </div>
     </div>
   </div>
 </section>
 
-
-<section class="section" id="roi-calculator">
-  <div class="eyebrow center"><i class="fas fa-calculator"></i> PAYROLL ARBITRAGE CALCULATOR</div>
-  <h2 class="sec-title">Calculate Your Annual Savings With Sevenforce AI</h2>
-  <p class="sandbox-subtitle center">See how much your organization saves by replacing manual agency overhead with autonomous AI workers.</p>
-  
-  <div class="interactive-widget-box reveal">
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px; align-items:center;">
-      <div>
-        <div class="widget-slider-row">
-          <label style="font-weight:700; font-size:13px; color:var(--text);"><i class="fas fa-users"></i> Number of Full-Time Roles Replaced:</label>
-          <span id="roiEmployeesVal" style="font-weight:800; color:var(--primary-l); font-size:15px;">5 Roles</span>
-        </div>
-        <input type="range" id="roiEmployees" class="widget-slider" min="1" max="50" value="5" oninput="document.getElementById('roiEmployeesVal').textContent = this.value + ' Roles'">
-        
-        <div class="widget-slider-row" style="margin-top:20px;">
-          <label style="font-weight:700; font-size:13px; color:var(--text);"><i class="fas fa-money-bill-wave"></i> Average Annual Salary per Role ($):</label>
-          <span id="roiSalaryVal" style="font-weight:800; color:var(--primary-l); font-size:15px;">$60,000 / yr</span>
-        </div>
-        <input type="range" id="roiSalary" class="widget-slider" min="20000" max="150000" step="5000" value="60000" oninput="document.getElementById('roiSalaryVal').textContent = '$' + parseInt(this.value).toLocaleString() + ' / yr'">
-      </div>
-      
-      <div style="background:rgba(0,0,0,0.4); border:1px solid var(--border-hi); border-radius:var(--radius); padding:24px; text-align:center;">
-        <div style="font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-3); margin-bottom:8px;">Estimated Net Annual Savings</div>
-        <div id="roiSavingsVal" style="font-size:36px; font-weight:900; font-family:var(--font-heading); color:#22c55e; margin-bottom:10px;">$300,000 / year</div>
-        <p style="font-size:12.5px; color:var(--text-2); margin-bottom:16px;">100% Free BYOK Architecture &bull; $0 Subscription Fees &bull; Unlimited Inferences</p>
-        <a href="#sandbox" class="btn btn-primary lg" style="width:100%"><i class="fas fa-bolt"></i> Deploy Your 7 AI Employees Free</a>
+<!-- CTA -->
+<section class="section">
+  <div class="w">
+    <div class="cta-wrap">
+      <span class="eyebrow" style="display:block;margin-bottom:14px">Get Started Free</span>
+      <h2>Your AI workforce is ready to deploy.</h2>
+      <p>Add a free Groq API key, choose your AI employees, and watch them start working in under 60 seconds.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a class="btn-main btn-cyn" href="https://sevenseed.onrender.com/app/"><i class="fas fa-rocket"></i> Launch AI Command Center</a>
+        <button class="btn-main btn-out" onclick="document.getElementById('byokModal').classList.add('open')"><i class="fas fa-key"></i> Add Free Groq Key</button>
       </div>
     </div>
   </div>
 </section>
 
-
-<section class="section process" id="process">
-  <div class="eyebrow center"><i class="fas fa-diagram-project"></i> THE WORKFLOW</div>
-  <h2 class="sec-title">How Sevenforce Automates Your Work</h2>
-  <div class="proc-grid">
-    <div class="proc-step glow tilt-card reveal"><span class="proc-num">01</span><div class="proc-ic"><i class="fas fa-user-plus"></i></div><h4>Select Your Agent</h4><p>Choose the specialist needed: Maya for SEO, Buddy for sales, or Dexter for finance.</p></div>
-        <div class="proc-step glow tilt-card reveal"><span class="proc-num">02</span><div class="proc-ic"><i class="fas fa-sliders"></i></div><h4>Provide Context</h4><p>Paste your target topic, lead list, support ticket, or financial numbers.</p></div>
-        <div class="proc-step glow tilt-card reveal"><span class="proc-num">03</span><div class="proc-ic"><i class="fas fa-bolt"></i></div><h4>Autonomous Execution</h4><p>The agent runs multi-step reasoning, checks benchmarks, and produces finished work.</p></div>
-        <div class="proc-step glow tilt-card reveal"><span class="proc-num">04</span><div class="proc-ic"><i class="fas fa-file-export"></i></div><h4>Deploy Deliverables</h4><p>Export clean JSON, formatted markdown, or copy battlecards directly into your workflow.</p></div>
-  </div>
-</section>
-
-<section class="impact" id="impact">
-  <div class="impact-inner">
-    <div class="eyebrow center"><i class="fas fa-chart-line"></i> BY THE NUMBERS</div>
-    <h2 class="sec-title">Workforce Productivity Multipliers</h2>
-    <div class="impact-grid">
-      <div class="metric glow tilt-card reveal"><div class="metric-num count">7</div><div class="metric-lbl">AI Specialists</div><div class="metric-sub">Ready in seconds</div></div>
-        <div class="metric glow tilt-card reveal"><div class="metric-num count">10x</div><div class="metric-lbl">Faster Turnaround</div><div class="metric-sub">Instant execution</div></div>
-        <div class="metric glow tilt-card reveal"><div class="metric-num count">100%</div><div class="metric-lbl">Private BYOK</div><div class="metric-sub">Zero server storage</div></div>
+<!-- Footer -->
+<footer>
+  <div class="fi">
+    <div style="font-family:var(--font-h);font-size:13px;color:var(--cyan);letter-spacing:.08em">SEVENFORCE AI</div>
+    <div class="fl">
+      <a href="https://sevenseed.onrender.com/">Sevenseed Hub</a>
+      <a href="https://comonk-ai.onrender.com/">Comonk</a>
+      <a href="https://avpu-ai.onrender.com/">AVPU</a>
+      <a href="https://breakdown-factor.onrender.com/">Breakdown</a>
     </div>
-  </div>
-</section>
-
-<section class="section" id="testimonials">
-  <div class="eyebrow center"><i class="fas fa-quote-left"></i> VALIDATION & TRUST</div>
-  <h2 class="sec-title">Engineered For Real-World Impact</h2>
-  <div class="tgrid">
-    <figure class="tcard glow tilt-card reveal"><div class="tstars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><blockquote>&ldquo;The AI features and legal accuracy save hours of manual drafting.&rdquo;</blockquote><figcaption><span class="tavatar">IR</span><span class="tmeta"><strong>Inspector R. Sharma</strong><small>Ahmedabad Police</small></span></figcaption></figure>
-        <figure class="tcard glow tilt-card reveal"><div class="tstars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><blockquote>&ldquo;Instant, trustworthy guidance when facing cyber fraud and emergency situations.&rdquo;</blockquote><figcaption><span class="tavatar">PP</span><span class="tmeta"><strong>Priya Patel</strong><small>Verified User</small></span></figcaption></figure>
-        <figure class="tcard glow tilt-card reveal"><div class="tstars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><blockquote>&ldquo;Vision sentinel tools provide reliable security and attendance monitoring.&rdquo;</blockquote><figcaption><span class="tavatar">VD</span><span class="tmeta"><strong>Vikram Desai</strong><small>Security Director</small></span></figcaption></figure>
-  </div>
-</section>
-
-<section class="section faq-sec" id="faq">
-  <div class="eyebrow center"><i class="fas fa-circle-question"></i> FAQ</div>
-  <h2 class="sec-title">Frequently Asked Questions</h2>
-  <div class="faq-list">
-    <details class="faq reveal"><summary><span>Is this platform completely free to use?</span><i class="fas fa-chevron-down"></i></summary><div class="faq-a">Yes, 100% free with no paywalls, subscriptions, or credit cards required. You bring your own API key (BYOK).</div></details>
-        <details class="faq reveal"><summary><span>How does the Universal BYOK engine work?</span><i class="fas fa-chevron-down"></i></summary><div class="faq-a">You provide your own Groq, Gemini, OpenAI, or Anthropic key. It is stored solely in your local browser session and forwarded directly per request.</div></details>
-        <details class="faq reveal"><summary><span>Are the domain rules and benchmarks verified?</span><i class="fas fa-chevron-down"></i></summary><div class="faq-a">Yes. All our algorithms adhere strictly to official standards like IS 456:2000 (Construction), BNS 2023 (Indian Law), Section 80G (IT Act), and clinical pharmacology rules.</div></details>
-  </div>
-</section>
-
-<section class="cta" id="contact">
-  <div class="cta-glow"></div>
-  <div class="cta-content reveal">
-    <div class="cta-badge"><i class="fas fa-seedling"></i> Est. 2026 · Autonomous AI Employee & Workforce Suite</div>
-    <h2>Put Your AI Team to Work Today</h2>
-    <p>Launch the Sevenforce command center and start delegating your content, sales, and operations workloads.</p>
-    <div class="cta-actions">
-      <a class="btn btn-primary lg" href="#sandbox"><i class="fas fa-bolt"></i> Launch Sevenforce</a>
-      <a class="btn btn-ghost lg" href="tel:+918490861586"><i class="fas fa-phone"></i> +91 84908 61586</a>
-    </div>
-    <form class="contact-form" id="contactForm" data-email="hello@sevenforce.ai" data-company="Seven force">
-      <div class="cf-row">
-        <input type="text" id="cf-name" placeholder="Your Name" autocomplete="name" required>
-        <input type="email" id="cf-email" placeholder="Your Email Address" autocomplete="email" required>
-      </div>
-      <input type="text" id="cf-subject" placeholder="Subject / Venture Interest">
-      <textarea id="cf-msg" rows="3" placeholder="How can we assist you?" required></textarea>
-      <button type="submit" class="btn btn-primary lg"><i class="fas fa-paper-plane"></i> Send Direct Message</button>
-      <p class="cf-note" id="cf-note" role="status"></p>
-    </form>
-    <div class="cta-contact">
-      <span><i class="fas fa-envelope"></i> hello@sevenforce.ai</span>
-      <span><i class="fas fa-location-dot"></i> Ahmedabad, Gujarat, India</span>
-    </div>
-  </div>
-</section>
-
-<footer class="foot">
-  <div class="foot-grid">
-    <div class="foot-brand">
-      <a class="logo" href="#top">
-        <span class="logo-icon"><i class="fas fa-users-gear"></i></span>
-        <span class="logo-text">Seven <span class="logo-accent">force</span></span>
-      </a>
-      <p>Sevenforce provides 7 specialized AI employees — Maya (SEO), Buddy (Sales), Cassie (Support), Dexter (Finance), Commet (E-Commerce), RecruitAI (HR), and CodeRaven (Security) — ready to execute 24/7.</p>
-      <div class="foot-social">
-        <a href="https://github.com/KunalPatell" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:hello@sevenforce.ai" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      </div>
-    </div>
-    <div class="foot-nav">
-      <h4>Sevenseed Portfolio</h4>
-      <ul class="foot-links">
-        <li><a href="../comonk/index.html">Comonk Technology</a></li>
-          <li><a href="../index.html">Sevenseed Studio</a></li>
-          <li><span class="foot-current">Sevenforce AI Workforce</span></li>
-          <li><a href="../avpu/index.html">AVP University</a></li>
-          <li><a href="../decode-forest-pharmacy/index.html">Decode Forest Pharmacy</a></li>
-          <li><a href="../breakdown-factor/index.html">Breakdown Factor</a></li>
-          <li><a href="../avp-charitable-trust/index.html">AVP Charitable Trust</a></li>
-          <li><a href="../avp-emart/index.html">AVP Emart</a></li>
-          <li><a href="../rakshak-ai/index.html">Rakshak AI Safety</a></li>
-      </ul>
-    </div>
-    <div class="foot-legal">
-      <h4>Platform & Security</h4>
-      <ul>
-        <li><i class="fas fa-shield-check"></i> 100% Free BYOK Architecture</li>
-        <li><i class="fas fa-lock"></i> Zero Data Retention Policy</li>
-        <li><i class="fas fa-scale-balanced"></i> IS 456 & BNS 2023 Aligned</li>
-        <li><i class="fas fa-server"></i> FastAPI Reverse Proxy Engine</li>
-      </ul>
-    </div>
-  </div>
-  <div class="foot-bottom">
-    <p>&copy; 2026 Sevenseed AI Venture Ecosystem. Built with pride in Gujarat, India.</p>
-    <p class="foot-tagline">🌱 Planting AI seeds that grow into production forests.</p>
+    <div style="font-family:var(--font-m);font-size:11px;color:var(--muted)">© 2026 Sevenforce AI · Ahmedabad, India</div>
   </div>
 </footer>
 
-<script src="app.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Scroll progress
+const sp = document.getElementById('sp');
+window.addEventListener('scroll', () => {
+  sp.style.width = (scrollY / (document.body.scrollHeight - innerHeight) * 100) + '%';
+  document.getElementById('mainNav').classList.toggle('scrolled', scrollY > 20);
+});
+
+// Mobile menu
+document.getElementById('hamburger').onclick = () => { document.getElementById('mobMenu').classList.add('open'); };
+document.getElementById('mobClose').onclick = () => { document.getElementById('mobMenu').classList.remove('open'); };
+
+// BYOK
+function openByok() { document.getElementById('byokModal').classList.add('open'); }
+document.getElementById('byokBtn').onclick = openByok;
+document.getElementById('heroByok').onclick = openByok;
+document.getElementById('byokClose').onclick = () => document.getElementById('byokModal').classList.remove('open');
+document.getElementById('byokModal').onclick = e => { if(e.target===document.getElementById('byokModal')) document.getElementById('byokModal').classList.remove('open'); };
+document.getElementById('bSave').onclick = () => {
+  ['bGroq','bGem','bOai'].forEach(id => { const v = document.getElementById(id).value.trim(); if(v) localStorage.setItem(id,v); });
+  document.getElementById('byokModal').classList.remove('open');
+};
+document.getElementById('bClear').onclick = () => { ['bGroq','bGem','bOai'].forEach(id => { localStorage.removeItem(id); document.getElementById(id).value=''; }); };
+document.addEventListener('keydown', e => { if(e.key==='Escape') document.getElementById('byokModal').classList.remove('open'); });
+
+// Terminal log animation
+const logs = [
+  {ts:'08:14:02', cls:'log-cyan', txt:'[SUPERVISOR] All 7 agents initialized. LangGraph routing active.'},
+  {ts:'08:14:03', cls:'log-green', txt:'[MAYA] SEO cluster scan complete. 47 keyword opportunities found.'},
+  {ts:'08:14:05', cls:'', txt:'[BUDDY] Outreach sequence started for 23 qualified leads.'},
+  {ts:'08:14:06', cls:'log-green', txt:'[CASSIE] 3 support tickets resolved. Avg. response: 0.8s.'},
+  {ts:'08:14:07', cls:'', txt:'[DEXTER] MRR report generated: $12,400 (+18% MoM).'},
+  {ts:'08:14:09', cls:'log-green', txt:'[RECRUITSAI] 8 resumes screened. 2 candidates shortlisted.'},
+  {ts:'08:14:10', cls:'log-warn', txt:'[CODERAVEN] CVE-2024-1234 detected in dependency. Patch queued.'},
+  {ts:'08:14:11', cls:'log-cyan', txt:'[COMMET] Price drop alert: 3 SKUs dropped >12% on competitor stores.'},
+  {ts:'08:14:13', cls:'log-green', txt:'[SUPERVISOR] Groq LLaMA 3.3 70B inference: 94ms avg. All agents healthy.'},
+];
+const term = document.getElementById('termLog');
+logs.forEach((l, i) => {
+  setTimeout(() => {
+    const div = document.createElement('div');
+    div.className = 'log-line ' + (l.cls||'');
+    div.style.animationDelay = '0s';
+    div.innerHTML = `<span class="log-ts">${l.ts}</span> ${l.txt}`;
+    term.appendChild(div);
+    term.scrollTop = term.scrollHeight;
+  }, i * 400);
+});
+
+// ROI Calculator
+const roiRoles = document.getElementById('roiRoles');
+const roiSal = document.getElementById('roiSal');
+function updateROI() {
+  const roles = +roiRoles.value;
+  const sal = +roiSal.value;
+  const total = roles * sal;
+  document.getElementById('roiRolesVal').textContent = roles;
+  document.getElementById('roiSalVal').textContent = '$' + sal.toLocaleString();
+  document.getElementById('roiTotal').textContent = '$' + total.toLocaleString() + '/yr';
+  document.getElementById('roiSave').textContent = '$' + total.toLocaleString();
+}
+roiRoles.addEventListener('input', updateROI);
+roiSal.addEventListener('input', updateROI);
+
+// GSAP entrances
+gsap.fromTo('.hero-badge', {y:16,opacity:0}, {y:0,opacity:1,duration:.7,ease:'power3.out'});
+gsap.fromTo('.hero-h1', {y:24,opacity:0}, {y:0,opacity:1,duration:.8,delay:.15,ease:'power3.out'});
+gsap.fromTo('.hero-sub', {y:20,opacity:0}, {y:0,opacity:1,duration:.8,delay:.28,ease:'power3.out'});
+gsap.fromTo('.hero-btns', {y:16,opacity:0}, {y:0,opacity:1,duration:.7,delay:.4,ease:'power3.out'});
+gsap.utils.toArray('.agent-card').forEach((c,i) => {
+  gsap.fromTo(c, {x:20,opacity:0}, {x:0,opacity:1,duration:.5,delay:.5+i*.08,ease:'power3.out'});
+});
+gsap.utils.toArray('.svc-item').forEach((el,i) => {
+  gsap.fromTo(el, {y:30,opacity:0}, {y:0,opacity:1,duration:.6,delay:i*.07,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 88%'}});
+});
+</script>
 </body>
 </html>
